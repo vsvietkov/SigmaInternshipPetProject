@@ -8,7 +8,8 @@ export function Input(props) {
         id={props.name}
         name={props.name}
         type="number"
-        className="form-control"
+        min={0}
+        className={"form-control " + props.className}
       />
       <span id={props.name + '-error'} className="text-danger input-error">{props.error}</span>
     </div>

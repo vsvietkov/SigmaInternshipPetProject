@@ -4,8 +4,7 @@ export function Selector(props) {
     return (
         <div className="col-md-5">
             <select
-              className="form-select"
-              aria-label="Default select example"
+              className="form-select shadow-none"
               onChange={props.onchange}
               defaultValue="circle"
             >
