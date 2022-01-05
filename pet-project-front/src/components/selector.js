@@ -3,20 +3,25 @@ import React from "react";
 export function Selector(props) {
     return (
         <div className="col-md-5">
-            <select className="form-select" aria-label="Default select example">
+            <select
+              className="form-select"
+              aria-label="Default select example"
+              onChange={props.onchange}
+              defaultValue="circle"
+            >
                 <option disabled>2D figures</option>
-                <option value="circle" selected>Circle</option>
-                <option value="triangle">Triangle</option>
-                <option value="quadrangle">Quadrangle</option>
-                <option value="square">Square</option>
-                <option value="rectangle">Rectangle</option>
-                <option value="trapezoid">Trapezoid</option>
-                <option value="parallelogram">Parallelogram</option>
+                <option defaultValue="circle">Circle</option>
+                <option defaultValue="triangle">Triangle</option>
+                <option defaultValue="quadrangle">Quadrangle</option>
+                <option defaultValue="square">Square</option>
+                <option defaultValue="rectangle">Rectangle</option>
+                <option defaultValue="trapezoid">Trapezoid</option>
+                <option defaultValue="parallelogram">Parallelogram</option>
                 <option disabled>3D figures</option>
-                <option value="sphere">Sphere</option>
-                <option value="cylinder">Cylinder</option>
-                <option value="cube">Cube</option>
-                <option value="parallelepiped">Parallelepiped</option>
+                <option defaultValue="sphere">Sphere</option>
+                <option defaultValue="cylinder">Cylinder</option>
+                <option defaultValue="cube">Cube</option>
+                <option defaultValue="parallelepiped">Parallelepiped</option>
             </select>
         </div>
     );
