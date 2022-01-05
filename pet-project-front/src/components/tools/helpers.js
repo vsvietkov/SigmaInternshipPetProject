@@ -3,6 +3,11 @@ import {Inputs2D} from "../figureInputs/default2Dinputs";
 import {Inputs3D} from "../figureInputs/default3Dinputs";
 import {SphereInputs} from "../figureInputs/3D/sphereInputs";
 import {CylinderInputs} from "../figureInputs/3D/cylinderInputs";
+import {CircleImage} from "../figureImages/circleImage";
+import {SphereImage} from "../figureImages/sphereImage";
+import {CylinderImage} from "../figureImages/cylinderImage";
+import {CubeImage} from "../figureImages/cubeImage";
+import {ParallelepipedImage} from "../figureImages/parallelepipedImage";
 
 export function clearErrorSpans() {
   document.querySelectorAll('.input-error').forEach(element => {
@@ -10,7 +15,24 @@ export function clearErrorSpans() {
   })
 }
 
-export function getFigureComponent(figureName) {
+export function getFigureImage(figureName) {
+  switch (figureName) {
+    case 'Circle':
+      return <CircleImage />
+    case 'Sphere':
+      return <SphereImage />
+    case 'Cylinder':
+      return <CylinderImage />
+    case 'Cube':
+      return <CubeImage />
+    case 'Parallelepiped':
+      return <ParallelepipedImage />
+    default:
+      return <></>
+  }
+}
+
+export function getFigureInputs(figureName) {
   switch (figureName) {
     case 'Circle':
       return <CircleInputs />

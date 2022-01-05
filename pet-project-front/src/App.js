@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import {Selector} from "./components/selector";
 import {FormButtons} from "./components/formButtons";
-import {clearErrorSpans, getDefaultInputs, getFigureComponent} from "./components/tools/helpers";
+import {clearErrorSpans, getDefaultInputs, getFigureImage, getFigureInputs} from "./components/tools/helpers";
 
 import React, {useState, useEffect} from "react";
 
@@ -14,8 +14,9 @@ function App() {
         <Selector onchange={(event) => setFigure(event.target.value)}/>
         <div className="card mt-2">
           <form className="card-body shadow-lg">
+            {getFigureImage(figure)}
             {getDefaultInputs(figure)}
-            {getFigureComponent(figure)}
+            {getFigureInputs(figure)}
             <FormButtons />
           </form>
         </div>
