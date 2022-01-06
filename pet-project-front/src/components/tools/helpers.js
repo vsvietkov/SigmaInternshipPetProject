@@ -8,6 +8,12 @@ import {SphereImage} from "../figureImages/sphereImage";
 import {CylinderImage} from "../figureImages/cylinderImage";
 import {CubeImage} from "../figureImages/cubeImage";
 import {ParallelepipedImage} from "../figureImages/parallelepipedImage";
+import {TriangleImage} from "../figureImages/triangleImage";
+import {QuadrangleImage} from "../figureImages/quadrangleImage";
+import {RectangleImage} from "../figureImages/rectangleImage";
+import {SquareImage} from "../figureImages/squareImage";
+import {TrapezoidImage} from "../figureImages/trapezoidImage";
+import {ParallelogramImage} from "../figureImages/parallelogramImage";
 
 export function clearErrorSpans() {
   document.querySelectorAll('.input-error').forEach(element => {
@@ -19,6 +25,18 @@ export function getFigureImage(figureName) {
   switch (figureName) {
     case 'Circle':
       return <CircleImage />
+    case 'Triangle':
+      return <TriangleImage />
+    case 'Quadrangle':
+      return <QuadrangleImage />
+    case 'Square':
+      return <SquareImage />
+    case 'Rectangle':
+      return <RectangleImage />
+    case 'Trapezoid':
+      return <TrapezoidImage />
+    case 'Parallelogram':
+      return <ParallelogramImage />
     case 'Sphere':
       return <SphereImage />
     case 'Cylinder':
