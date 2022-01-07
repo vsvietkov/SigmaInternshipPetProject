@@ -70,11 +70,85 @@ class Circle implements Shape, Shape2D
     }
 
     /**
+     * @return void
+     */
+    public function calculateAllAttributes(): void
+    {
+        if (is_null($this->radius)) {
+            $this->radius = $this->calculateRadius();
+        }
+
+        if (is_null($this->diameter)) {
+            $this->diameter = $this->calculateDiameter();
+        }
+
+        if (is_null($this->area)) {
+            $this->area = $this->calculateArea();
+        }
+
+        if (is_null($this->perimeter)) {
+            $this->perimeter = $this->calculatePerimeter();
+        }
+    }
+
+    /**
+     * @return float|null
+     */
+    public function calculateRadius(): ?float
+    {
+        if (!is_null($this->diameter)) {
+            return $this->diameter / 2;
+        }
+
+        if (!is_null($this->area)) {
+            return sqrt($this->area / pi());
+        }
+
+        if (!is_null($this->perimeter)) {
+            return $this->perimeter / 2 / pi();
+        }
+
+        return null;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function calculateDiameter(): ?float
+    {
+        if (!is_null($this->radius)) {
+            $this->diameter = $this->radius * 2;
+        }
+
+        if (!is_null($this->area)) {
+            $this->diameter = sqrt($this->area / pi()) * 2;
+        }
+
+        if (!is_null($this->perimeter)) {
+            $this->diameter = $this->perimeter / pi();
+        }
+
+        return null;
+    }
+
+    /**
      * @return float|null
      */
     public function calculateArea(): ?float
     {
-        return is_null($this->radius) ? (pi() * pow($this->radius, 2)) : null;
+        if (!is_null($this->radius)) {
+            return (pi() * pow($this->radius, 2));
+        }
+
+        if (!is_null($this->diameter)) {
+            return (pi() * pow($this->diameter / 2, 2));
+        }
+
+        if (!is_null($this->perimeter)) {
+            return (pi() * pow($this->perimeter / 2 / pi(), 2));
+        }
+
+        return null;
     }
 
     /**
@@ -82,13 +156,18 @@ class Circle implements Shape, Shape2D
      */
     public function calculatePerimeter(): ?float
     {
-        return is_null($this->radius) ? (2 * pi() * $this->radius) : null;
-    }
+        if (!is_null($this->radius)) {
+            return (2 * pi() * $this->radius);
+        }
 
-    /**
-     * @return void
-     */
-    public function calculateAllAttributes(): void
-    {
+        if (!is_null($this->diameter)) {
+            return (pi() * $this->diameter);
+        }
+
+        if (!is_null($this->area)) {
+            return (2 * pi() * sqrt($this->area / pi()));
+        }
+
+        return null;
     }
 }
