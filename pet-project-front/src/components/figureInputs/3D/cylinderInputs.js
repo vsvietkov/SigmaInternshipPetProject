@@ -8,7 +8,7 @@ export function CylinderInputs(props) {
       <CircleInputs />
       <div className="row my-2">
         <Input
-          label="Altitude"
+          label="Altitude:"
           name="altitude"
         />
         <div className="col"></div>

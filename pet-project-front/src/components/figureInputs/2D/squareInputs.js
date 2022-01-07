@@ -1,16 +1,16 @@
 import React from "react";
 import {Input} from "../../input";
 
-export function CircleInputs(props) {
+export function SquareInputs(props) {
   return (
     <div className="row my-2">
       <Input
-        label="Radius:"
-        name="radius"
+        label="Side:"
+        name="side"
       />
       <Input
-        label="Diameter:"
-        name="diameter"
+        label="Diagonal:"
+        name="diagonal"
       />
     </div>
   )

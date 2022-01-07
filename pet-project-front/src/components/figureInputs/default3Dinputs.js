@@ -5,11 +5,11 @@ export function Inputs3D(props) {
   return (
     <div className="row my-2">
       <Input
-        label="Area"
+        label="Area:"
         name="area"
       />
       <Input
-        label="Volume"
+        label="Volume:"
         name="volume"
       />
     </div>

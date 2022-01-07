@@ -1,0 +1,9 @@
+.svgSmallLabel {
+    font-size: 0.4em;
+}
+
+.svgFigurePolygon {
+    fill: rgba(0,0,0,0);
+    stroke: red;
+    stroke-width: 0.3;
+}

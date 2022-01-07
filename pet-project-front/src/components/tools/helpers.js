@@ -14,6 +14,12 @@ import {RectangleImage} from "../figureImages/rectangleImage";
 import {SquareImage} from "../figureImages/squareImage";
 import {TrapezoidImage} from "../figureImages/trapezoidImage";
 import {ParallelogramImage} from "../figureImages/parallelogramImage";
+import {SquareInputs} from "../figureInputs/2D/squareInputs";
+import {RectangleInputs} from "../figureInputs/2D/rectangleInputs";
+import {TrapezoidInputs} from "../figureInputs/2D/trapezoidInputs";
+import {TriangleInputs} from "../figureInputs/2D/triangleInputs";
+import {ParallelogramInputs} from "../figureInputs/2D/parallelogramInputs";
+import {CubeInputs} from "../figureInputs/3D/cubeInputs";
 
 export function clearErrorSpans() {
   document.querySelectorAll('.input-error').forEach(element => {
@@ -54,10 +60,22 @@ export function getFigureInputs(figureName) {
   switch (figureName) {
     case 'Circle':
       return <CircleInputs />
+    case 'Triangle':
+      return <TriangleInputs />
+    case 'Square':
+      return <SquareInputs />
+    case 'Rectangle':
+      return <RectangleInputs />
+    case 'Trapezoid':
+      return <TrapezoidInputs />
+    case 'Parallelogram':
+      return <ParallelogramInputs />
     case 'Sphere':
       return <SphereInputs />
     case 'Cylinder':
       return <CylinderInputs />
+    case 'Cube':
+      return <CubeInputs />
     default:
       return <></>
   }

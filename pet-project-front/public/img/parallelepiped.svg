@@ -23,4 +23,14 @@
         <path style="fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:red;stroke-width:1.51400495px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="M 1100,132.36218 L 940,712.36218" id="path1894" sodipodi:nodetypes="cc"/>
         <path sodipodi:nodetypes="cc" id="path1896" d="M 500,132.36218 L 340,712.36218" style="fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:red;stroke-width:1.51400495;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:12.11204, 12.11204;stroke-dashoffset:0;stroke-opacity:1"/>
     </g>
+    <g style="fill:none;stroke:red;stroke-width:1;stroke-dasharray:12, 4">
+        <line x1="0" y1="755" x2="840" y2="582"/>
+        <line x1="600" y1="755" x2="160" y2="180"/>
+    </g>
+    <g style="font-size: 3em">
+        <text x="0" y="752">A</text>
+        <text x="120" y="190">B</text>
+        <text x="630" y="752">C</text>
+        <text x="850" y="600">D</text>
+    </g>
 </svg>
