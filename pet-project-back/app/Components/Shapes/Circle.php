@@ -117,15 +117,15 @@ class Circle implements Shape, Shape2D
     public function calculateDiameter(): ?float
     {
         if (!is_null($this->radius)) {
-            $this->diameter = $this->radius * 2;
+            return $this->radius * 2;
         }
 
         if (!is_null($this->area)) {
-            $this->diameter = sqrt($this->area / pi()) * 2;
+            return sqrt($this->area / pi()) * 2;
         }
 
         if (!is_null($this->perimeter)) {
-            $this->diameter = $this->perimeter / pi();
+            return $this->perimeter / pi();
         }
 
         return null;

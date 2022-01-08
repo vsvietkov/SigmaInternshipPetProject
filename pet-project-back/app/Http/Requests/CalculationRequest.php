@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\CircleAreaRule;
+use App\Rules\CirclePerimeterRule;
 use Illuminate\Foundation\Http\FormRequest;
-use JetBrains\PhpStorm\ArrayShape;
-use JetBrains\PhpStorm\Pure;
 
 class CalculationRequest extends FormRequest
 {
@@ -15,7 +15,7 @@ class CalculationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,36 +25,38 @@ class CalculationRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules        = [];
-        $exclude_rule = 'exclude_unless:shape,';
-        $rules        += $this->getCircleRules($exclude_rule);
+        $commonRule = 'nullable|numeric|min:0|not_in:0';
+        $rules      = [
+            'shape'    => 'required|string',
+            'radius'   => $commonRule,
+            'diameter' => $commonRule,
+        ];
+        $commonRule .= '|exclude_unless:shape,';
+        $rules      += $this->getCircleRules($commonRule);
 
         return $rules;
     }
 
     /**
-     * @param  string $exclude_rule
-     * @return string[]
+     * @param  string $inputRules
+     * @return array
      */
-    private function getCircleRules(string $exclude_rule): array
+    private function getArrayOfRules(string $inputRules): array
     {
-        $exclude_rule .= 'circle;';
-        return [
-            'radius'   => $exclude_rule,
-            'diameter' => $exclude_rule,
-        ];
+        return explode('|', $inputRules);
     }
 
     /**
-     * @param  string $exclude_rule
+     * @param  string $commonRule
      * @return string[]
      */
-    private function getSphereRules(string $exclude_rule): array
+    private function getCircleRules(string $commonRule): array
     {
-        $exclude_rule .= 'sphere;';
+        $commonRule .= 'Circle';
+        $rules       = $this->getArrayOfRules($commonRule);
         return [
-            'radius'   => $exclude_rule,
-            'diameter' => $exclude_rule,
+            'area'      => array_merge($rules, [new CircleAreaRule()]),
+            'perimeter' => array_merge($rules, [new CirclePerimeterRule()]),
         ];
     }
 }
