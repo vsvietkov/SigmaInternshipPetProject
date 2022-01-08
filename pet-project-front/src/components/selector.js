@@ -4,9 +4,10 @@ export function Selector(props) {
     return (
         <div className="col-md-5">
             <select
+              name="shape"
               className="form-select shadow-none"
               onChange={props.onchange}
-              defaultValue="circle"
+              defaultValue='circle'
             >
                 <option disabled>2D figures</option>
                 <option defaultValue="circle">Circle</option>

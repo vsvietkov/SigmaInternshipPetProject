@@ -10,17 +10,17 @@ function App() {
   useEffect(clearErrorSpans, [figure])
 
   return (
-      <div className="col-md-6 m-auto">
+      <form className="col-md-6 m-auto">
         <Selector onchange={(event) => setFigure(event.target.value)}/>
         <div className="card mt-2">
-          <form className="card-body shadow-lg">
+          <div className="card-body shadow-lg">
             {getFigureImage(figure)}
             {getDefaultInputs(figure)}
             {getFigureInputs(figure)}
             <FormButtons />
-          </form>
+          </div>
         </div>
-      </div>
+      </form>
   );
 }
 

@@ -6,12 +6,12 @@ export function Inputs2D(props) {
   return (
     <div className="row my-2">
       <Input
-        label="Area:"
-        name="area"
+        label='Area:'
+        name='area'
       />
       <Input
         label={secondInputName.charAt(0).toUpperCase() + secondInputName.slice(1) + ':'}
-        name={secondInputName}
+        name='perimeter'
       />
     </div>
   );

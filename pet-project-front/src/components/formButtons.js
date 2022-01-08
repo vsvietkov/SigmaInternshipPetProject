@@ -10,10 +10,15 @@ export function FormButtons(props) {
       >Submit
       </button>
       <button
-        id="clearButton"
         className="btn btn-secondary col-sm-5 shadow-none"
         type="reset"
-        onClick={clearErrorSpans}
+        onClick={() => {
+          clearErrorSpans()
+          let selectorValueBeforeReset = document.querySelector('select').value
+          setTimeout(() => {
+            document.querySelector('select').value = selectorValueBeforeReset
+          }, 1)
+        }}
       >Clear
       </button>
     </div>
