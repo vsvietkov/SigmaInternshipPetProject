@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Components\CalculationsOutputter;
 use App\Components\Shapes\Circle;
 use App\Http\Requests\CalculationRequest;
 use Illuminate\Http\JsonResponse;
@@ -14,19 +15,15 @@ class CalculationController extends Controller
      */
     public function calculate(CalculationRequest $request): JsonResponse
     {
-        $circle = new Circle(
+        $shape = new Circle(
             $request->input('radius'),
             $request->input('diameter'),
             $request->input('area'),
             $request->input('perimeter')
         );
-        $circle->calculateAllAttributes();
+        $shape->calculateAllAttributes();
+        $outputter = new CalculationsOutputter($shape);
 
-        return response()->json([
-            $circle->getRadius(),
-            $circle->getDiameter(),
-            $circle->getArea(),
-            $circle->getPerimeter(),
-        ]);
+        return response()->json($outputter->output());
     }
 }

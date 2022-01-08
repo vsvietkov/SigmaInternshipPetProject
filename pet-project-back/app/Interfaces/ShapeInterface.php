@@ -1,6 +1,6 @@
 <?php namespace App\Interfaces;
 
-interface Shape
+interface ShapeInterface
 {
     public function calculateArea(): ?float;
     public function calculateAllAttributes(): void;

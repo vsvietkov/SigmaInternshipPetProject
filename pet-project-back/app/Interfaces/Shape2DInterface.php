@@ -1,6 +1,6 @@
 <?php namespace App\Interfaces;
 
-interface Shape2D
+interface Shape2DInterface
 {
     public function calculatePerimeter(): ?float;
 }

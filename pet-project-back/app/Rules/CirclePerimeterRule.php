@@ -21,17 +21,17 @@ class CirclePerimeterRule implements Rule
     public function passes($attribute, $value): bool
     {
         $this->relatedValue = 'radius';
-        if (request()->has('radius')) {
+        if (request()->input('radius')) {
             return floatval($value) === (floatval(request()->input('radius')) * 2 * pi());
         }
 
         $this->relatedValue = 'diameter';
-        if (request()->has('diameter')) {
+        if (request()->input('diameter')) {
             return floatval($value) === (floatval(request()->input('diameter')) * pi());
         }
 
         $this->relatedValue = 'area';
-        if (request()->has('area')) {
+        if (request()->input('area')) {
             return floatval($value) === (sqrt(floatval(request()->input('area')) / pi()) * 2 * pi());
         }
 

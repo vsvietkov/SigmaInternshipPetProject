@@ -1,9 +1,10 @@
 <?php namespace App\Components\Shapes;
 
-use App\Interfaces\Shape;
-use App\Interfaces\Shape2D;
+use App\Components\BaseShape;
+use App\Interfaces\ShapeInterface;
+use App\Interfaces\Shape2DInterface;
 
-class Circle implements Shape, Shape2D
+class Circle extends BaseShape implements ShapeInterface, Shape2DInterface
 {
     /**
      * @var float|null
@@ -169,5 +170,18 @@ class Circle implements Shape, Shape2D
         }
 
         return null;
+    }
+
+    /**
+     * @return array
+     */
+    public function serialize(): array
+    {
+        return [
+            'radius'    => $this->radius,
+            'diameter'  => $this->diameter,
+            'area'      => $this->area,
+            'perimeter' => $this->perimeter,
+        ];
     }
 }

@@ -1,16 +1,21 @@
 <?php namespace App\Components;
 
-use App\Interfaces\Shape;
+use App\Interfaces\ShapeInterface;
 
 class CalculationsOutputter
 {
     /**
-     * @var Shape
+     * @var BaseShape
      */
-    private Shape $shape;
+    private BaseShape $shape;
 
-    public function __construct(Shape $shape)
+    public function __construct(BaseShape $shape)
     {
         $this->shape = $shape;
+    }
+
+    public function output()
+    {
+        return $this->shape->serialize();
     }
 }

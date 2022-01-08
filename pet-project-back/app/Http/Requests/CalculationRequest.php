@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Rules\CircleAreaRule;
+use App\Rules\CircleDiameterRule;
 use App\Rules\CirclePerimeterRule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -29,7 +30,6 @@ class CalculationRequest extends FormRequest
         $rules      = [
             'shape'    => 'required|string',
             'radius'   => $commonRule,
-            'diameter' => $commonRule,
         ];
         $commonRule .= '|exclude_unless:shape,';
         $rules      += $this->getCircleRules($commonRule);
@@ -55,6 +55,7 @@ class CalculationRequest extends FormRequest
         $commonRule .= 'Circle';
         $rules       = $this->getArrayOfRules($commonRule);
         return [
+            'diameter'  => array_merge($rules, [new CircleDiameterRule()]),
             'area'      => array_merge($rules, [new CircleAreaRule()]),
             'perimeter' => array_merge($rules, [new CirclePerimeterRule()]),
         ];
