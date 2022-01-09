@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Components\CalculationsOutputter;
+use App\Components\ShapeFactory;
 use App\Components\Shapes\Circle;
 use App\Http\Requests\CalculationRequest;
 use Illuminate\Http\JsonResponse;
@@ -15,12 +16,16 @@ class CalculationController extends Controller
      */
     public function calculate(CalculationRequest $request): JsonResponse
     {
-        $shape = new Circle(
-            $request->input('radius'),
-            $request->input('diameter'),
-            $request->input('area'),
-            $request->input('perimeter')
-        );
+        $shapeFactory = new ShapeFactory();
+        $shape        = $shapeFactory->make($request->input('shape'));
+        if (is_null($shape)) {
+            return response()->json([
+               'errors' => [
+                   'shape' => ['We cannot provide calculations for this shape'],
+               ],
+            ], 422);
+        }
+
         $shape->calculateAllAttributes();
         $outputter = new CalculationsOutputter($shape);
 

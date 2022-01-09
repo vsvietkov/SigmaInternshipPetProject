@@ -23,6 +23,7 @@ export function Selector(props) {
                 <option defaultValue="cube">Cube</option>
                 <option defaultValue="parallelepiped">Parallelepiped</option>
             </select>
+            <span id="shape-error" className="text-danger input-error p-1"></span>
         </div>
     );
 }

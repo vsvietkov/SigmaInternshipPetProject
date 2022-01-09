@@ -37,6 +37,7 @@ async function calculate(event) {
   })
   let result = await response.json()
 
+  console.log(result)
   switch (response.status) {
     case 200:
       for (const key in result) {
