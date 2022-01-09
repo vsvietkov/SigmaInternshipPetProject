@@ -9,6 +9,7 @@ export function Input(props) {
         name={props.name}
         type="text"
         className={"form-control " + props.className}
+        autoComplete={'off'}
       />
       <span id={props.name + '-error'} className="text-danger input-error">{props.error}</span>
     </div>
