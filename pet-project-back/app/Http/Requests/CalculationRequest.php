@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\CircleAreaRule;
-use App\Rules\CircleDiameterRule;
-use App\Rules\CirclePerimeterRule;
+use App\Rules\Circle\CircleAreaRule;
+use App\Rules\Circle\CircleDiameterRule;
+use App\Rules\Circle\CirclePerimeterRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CalculationRequest extends FormRequest

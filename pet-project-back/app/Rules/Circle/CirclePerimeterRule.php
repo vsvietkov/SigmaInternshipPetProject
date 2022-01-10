@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Rules;
+namespace App\Rules\Circle;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class CircleDiameterRule implements Rule
+class CirclePerimeterRule implements Rule
 {
     /**
      * @var string
@@ -22,17 +22,17 @@ class CircleDiameterRule implements Rule
     {
         $this->relatedValue = 'radius';
         if (request()->input('radius')) {
-            return floatval($value) === (floatval(request()->input('radius')) * 2);
+            return floatval($value) === (floatval(request()->input('radius')) * 2 * pi());
+        }
+
+        $this->relatedValue = 'diameter';
+        if (request()->input('diameter')) {
+            return floatval($value) === (floatval(request()->input('diameter')) * pi());
         }
 
         $this->relatedValue = 'area';
         if (request()->input('area')) {
-            return floatval($value) === (sqrt(floatval(request()->input('area')) / pi()) * 2);
-        }
-
-        $this->relatedValue = 'perimeter';
-        if (request()->input('perimeter')) {
-            return floatval($value) === (floatval(request()->input('perimeter')) / pi());
+            return floatval($value) === (sqrt(floatval(request()->input('area')) / pi()) * 2 * pi());
         }
 
         return true;
