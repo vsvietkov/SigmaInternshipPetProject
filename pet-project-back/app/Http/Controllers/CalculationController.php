@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Components\CalculationsOutputter;
 use App\Components\ShapeFactory;
-use App\Components\Shapes\Circle;
 use App\Exceptions\NoSuchShapeException;
 use App\Http\Requests\CalculationRequest;
 use Illuminate\Http\JsonResponse;
