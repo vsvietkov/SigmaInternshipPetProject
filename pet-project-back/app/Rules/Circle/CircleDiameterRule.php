@@ -26,13 +26,13 @@ class CircleDiameterRule implements Rule
         }
 
         $this->relatedValue = 'area';
-        if (request()->input('area')) {
-            return floatval($value) === (sqrt(floatval(request()->input('area')) / pi()) * 2);
+        if (request()->input('Circle_area')) {
+            return floatval($value) === (sqrt(floatval(request()->input('Circle_area')) / pi()) * 2);
         }
 
         $this->relatedValue = 'perimeter';
-        if (request()->input('perimeter')) {
-            return floatval($value) === (floatval(request()->input('perimeter')) / pi());
+        if (request()->input('Circle_perimeter')) {
+            return floatval($value) === (floatval(request()->input('Circle_perimeter')) / pi());
         }
 
         return true;

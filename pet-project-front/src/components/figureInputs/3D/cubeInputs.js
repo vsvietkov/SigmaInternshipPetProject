@@ -1,6 +1,5 @@
 import React from "react";
 import {Input} from "../../input";
-import {CircleInputs} from "../2D/circleInputs";
 
 export function CubeInputs(props) {
   return (

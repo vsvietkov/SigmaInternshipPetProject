@@ -31,8 +31,7 @@ class CalculationRequest extends FormRequest
             'shape'    => 'required|string',
             'radius'   => $commonRule,
         ];
-        $commonRule .= '|exclude_unless:shape,';
-        $rules      += $this->getCircleRules($commonRule);
+        $rules += $this->getCircleRules($commonRule);
 
         return $rules;
     }
@@ -52,12 +51,11 @@ class CalculationRequest extends FormRequest
      */
     private function getCircleRules(string $commonRule): array
     {
-        $commonRule .= 'Circle';
-        $rules       = $this->getArrayOfRules($commonRule);
+        $rules = $this->getArrayOfRules($commonRule);
         return [
-            'diameter'  => array_merge($rules, [new CircleDiameterRule()]),
-            'area'      => array_merge($rules, [new CircleAreaRule()]),
-            'perimeter' => array_merge($rules, [new CirclePerimeterRule()]),
+            'Circle_diameter'  => array_merge($rules, [new CircleDiameterRule()]),
+            'Circle_area'      => array_merge($rules, [new CircleAreaRule()]),
+            'Circle_perimeter' => array_merge($rules, [new CirclePerimeterRule()]),
         ];
     }
 }

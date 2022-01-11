@@ -3,13 +3,16 @@ import {Selector} from "./components/selector";
 import {FormButtons} from "./components/formButtons";
 import {clearErrorSpans, getDefaultInputs, getFigureImage, getFigureInputs} from "./components/tools/helpers";
 
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, createContext} from "react";
+export const Context = createContext('Circle')
 
 function App() {
   const [figure, setFigure] = useState('Circle');
   useEffect(clearErrorSpans, [figure])
 
   return (
+    <Context.Provider value={figure}>
+
       <form className="col-md-6 m-auto" onSubmit={calculate}>
         <Selector onchange={(event) => setFigure(event.target.value)}/>
         <div className="card mt-2">
@@ -21,6 +24,8 @@ function App() {
           </div>
         </div>
       </form>
+
+    </Context.Provider>
   );
 }
 

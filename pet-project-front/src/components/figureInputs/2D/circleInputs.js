@@ -5,12 +5,14 @@ export function CircleInputs(props) {
   return (
     <div className="row my-2">
       <Input
+        id="radius"
         label="Radius:"
         name="radius"
       />
       <Input
+        id="diameter"
         label="Diameter:"
-        name="diameter"
+        name="Circle_diameter"
       />
     </div>
   )
