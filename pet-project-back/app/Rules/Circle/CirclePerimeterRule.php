@@ -2,6 +2,7 @@
 
 namespace App\Rules\Circle;
 
+use App\Components\Shapes\Circle;
 use App\Rules\BaseRule;
 
 class CirclePerimeterRule extends BaseRule
@@ -15,21 +16,18 @@ class CirclePerimeterRule extends BaseRule
      */
     public function passes($attribute, $value): bool
     {
-        $this->relatedValue = 'radius';
+        $circle = null;
         if (request()->input('radius')) {
-            return floatval($value) === (floatval(request()->input('radius')) * 2 * pi());
+            $this->relatedValue = 'radius';
+            $circle = new Circle(floatval(request()->input('radius')));
+        } else if (request()->input('Circle_diameter')) {
+            $this->relatedValue = 'diameter';
+            $circle = new Circle(null, floatval(request()->input('Circle_diameter')));
+        } else if (request()->input('Circle_area')) {
+            $this->relatedValue = 'area';
+            $circle = new Circle(null, null, floatval(request()->input('Circle_area')));
         }
 
-        $this->relatedValue = 'diameter';
-        if (request()->input('Circle_diameter')) {
-            return floatval($value) === (floatval(request()->input('Circle_diameter')) * pi());
-        }
-
-        $this->relatedValue = 'area';
-        if (request()->input('Circle_area')) {
-            return floatval($value) === (sqrt(floatval(request()->input('Circle_area')) / pi()) * 2 * pi());
-        }
-
-        return true;
+        return is_null($circle) || floatval($value) === $circle->calculatePerimeter();
     }
 }

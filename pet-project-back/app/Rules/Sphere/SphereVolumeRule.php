@@ -26,6 +26,6 @@ class SphereVolumeRule extends BaseRule
             $sphere = new Sphere(null, null, floatval(request()->input('Sphere_area')));
         }
 
-        return is_null($sphere) ?? floatval($value) === $sphere->calculateVolume();
+        return is_null($sphere) || floatval($value) === $sphere->calculateVolume();
     }
 }

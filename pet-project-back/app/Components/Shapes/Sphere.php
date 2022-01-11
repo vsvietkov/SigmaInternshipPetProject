@@ -38,7 +38,7 @@ class Sphere extends BaseShape implements ShapeInterface, Shape3DInterface
         ?float $area = null,
         ?float $volume = null,
     ) {
-        if (request()->input('shape') === 'Sphere') {
+        if (func_num_args() === 0) {
             $this->radius   = request()->input('radius');
             $this->diameter = request()->input('Sphere_diameter');
             $this->area     = request()->input('Sphere_area');
@@ -157,7 +157,7 @@ class Sphere extends BaseShape implements ShapeInterface, Shape3DInterface
             'radius'   => $this->radius,
             'diameter' => $this->diameter,
             'area'     => $this->area,
-            'volume'  => $this->volume,
+            'volume'   => $this->volume,
         ];
     }
 }
