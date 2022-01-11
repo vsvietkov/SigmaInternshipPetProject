@@ -7,10 +7,12 @@ export function Inputs3D(props) {
   return (
     <div className="row my-2">
       <Input
+        id="area"
         label="Area:"
         name={figure + '_area'}
       />
       <Input
+        id="volume"
         label="Volume:"
         name={figure + '_volume'}
       />
