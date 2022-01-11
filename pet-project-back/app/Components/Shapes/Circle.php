@@ -40,9 +40,9 @@ class Circle extends BaseShape implements ShapeInterface, Shape2DInterface
     ) {
         if (request()->input('shape') === 'Circle') {
             $this->radius    = request()->input('radius');
-            $this->diameter  = request()->input('diameter');
-            $this->area      = request()->input('area');
-            $this->perimeter = request()->input('perimeter');
+            $this->diameter  = request()->input('Circle_diameter');
+            $this->area      = request()->input('Circle_area');
+            $this->perimeter = request()->input('Circle_perimeter');
         } else {
             $this->radius    = $radius;
             $this->diameter  = $diameter;
