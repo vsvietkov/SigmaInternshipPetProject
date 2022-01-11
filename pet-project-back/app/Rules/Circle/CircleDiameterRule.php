@@ -2,15 +2,10 @@
 
 namespace App\Rules\Circle;
 
-use Illuminate\Contracts\Validation\Rule;
+use App\Rules\BaseRule;
 
-class CircleDiameterRule implements Rule
+class CircleDiameterRule extends BaseRule
 {
-    /**
-     * @var string
-     */
-    private string $relatedValue;
-
     /**
      * Determine if the validation rule passes.
      *
@@ -36,15 +31,5 @@ class CircleDiameterRule implements Rule
         }
 
         return true;
-    }
-
-    /**
-     * Get the validation error message.
-     *
-     * @return string
-     */
-    public function message(): string
-    {
-        return "A value does not coincide with given $this->relatedValue.";
     }
 }

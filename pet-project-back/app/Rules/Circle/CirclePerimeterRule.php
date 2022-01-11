@@ -2,15 +2,10 @@
 
 namespace App\Rules\Circle;
 
-use Illuminate\Contracts\Validation\Rule;
+use App\Rules\BaseRule;
 
-class CirclePerimeterRule implements Rule
+class CirclePerimeterRule extends BaseRule
 {
-    /**
-     * @var string
-     */
-    private string $relatedValue;
-
     /**
      * Determine if the validation rule passes.
      *
@@ -26,7 +21,7 @@ class CirclePerimeterRule implements Rule
         }
 
         $this->relatedValue = 'diameter';
-        if (request()->input('Circle-diameter')) {
+        if (request()->input('Circle_diameter')) {
             return floatval($value) === (floatval(request()->input('Circle_diameter')) * pi());
         }
 
@@ -36,15 +31,5 @@ class CirclePerimeterRule implements Rule
         }
 
         return true;
-    }
-
-    /**
-     * Get the validation error message.
-     *
-     * @return string
-     */
-    public function message(): string
-    {
-        return "A value does not coincide with given $this->relatedValue.";
     }
 }
