@@ -6,32 +6,38 @@ export function TriangleInputs(props) {
     <>
       <div className="row my-2">
         <Input
+          id="cathetusA"
           label="CA:"
-          name="cathetusA"
+          name="Triangle_cathetusA"
         />
         <Input
+          id="cathetusB"
           label="CB:"
-          name="cathetusB"
+          name="Triangle_cathetusB"
         />
       </div>
       <div className="row my-2">
         <Input
+          id="hypotenuse"
           label="AB:"
-          name="hypotenuse"
+          name="Triangle_hypotenuse"
         />
         <Input
+          id="altitude"
           label="Altitude(CH):"
-          name="altitude"
+          name="Triangle_altitude"
         />
       </div>
       <div className="row my-2">
         <Input
+          id="angleA"
           label="Angle A:"
-          name="angleA"
+          name="Triangle_angleA"
         />
         <Input
+          id="angleB"
           label="Angle B:"
-          name="angleB"
+          name="Triangle_angleB"
         />
       </div>
     </>

@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useContext} from "react";
 import {Input} from "../../input";
+import {Context} from "../../../App";
 
 export function CircleInputs(props) {
+  let figure = useContext(Context)
   return (
     <div className="row my-2">
       <Input
@@ -12,7 +14,7 @@ export function CircleInputs(props) {
       <Input
         id="diameter"
         label="Diameter:"
-        name="Circle_diameter"
+        name={figure + '_diameter'}
       />
     </div>
   )
