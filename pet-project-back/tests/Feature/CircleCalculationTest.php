@@ -33,14 +33,14 @@ class CircleCalculationTest extends TestCase
         $response = $this->postJson($endpoint, [
             'shape'    => 'Circle',
             'radius'   => 1,
-            'diameter' => 3,
+            'Circle_diameter' => 3,
         ]);
         $response->assertStatus(422);
 
         $response = $this->postJson($endpoint, [
             'shape'    => 'Circle',
             'radius'   => 1,
-            'diameter' => 2,
+            'Circle_diameter' => 2,
         ]);
         $response->assertExactJson($expectedResult);
     }
