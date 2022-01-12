@@ -2,46 +2,50 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
+use Tests\BaseShapeFeatureTest;
 
-class CircleCalculationTest extends TestCase
+class CircleCalculationTest extends BaseShapeFeatureTest
 {
-    /**
-     * Test the request for circle data calculation
-     */
-    public function test__circleCalculationRequest()
+    protected function setUp(): void
     {
-        $endpoint = '/api/calculate';
-        $expectedResult = [
+        parent::setUp();
+        $this->endpoint           = '/api/calculate';
+        $this->expectedJsonResult = [
             'radius'    => 1,
             'diameter'  => 2,
             'area'      => pi(),
             'perimeter' => 6.283185307179586,
         ];
+    }
 
-        $response = $this->postJson($endpoint, [
+    /**
+     * Test the request for circle data calculation
+     */
+    public function test__circleCalculationRequest()
+    {
+        $response = $this->postJson($this->endpoint, [
             'radius' => 1,
         ]);
         $response->assertStatus(422);
 
-        $response = $this->postJson($endpoint, [
+        $response = $this->postJson($this->endpoint, [
             'shape'  => 'Circle',
             'radius' => 1,
         ]);
-        $response->assertExactJson($expectedResult);
+        $response->assertExactJson($this->expectedJsonResult);
 
-        $response = $this->postJson($endpoint, [
-            'shape'    => 'Circle',
-            'radius'   => 1,
+        $response = $this->postJson($this->endpoint, [
+            'shape'           => 'Circle',
+            'radius'          => 1,
             'Circle_diameter' => 3,
         ]);
         $response->assertStatus(422);
 
-        $response = $this->postJson($endpoint, [
-            'shape'    => 'Circle',
-            'radius'   => 1,
+        $response = $this->postJson($this->endpoint, [
+            'shape'           => 'Circle',
+            'radius'          => 1,
             'Circle_diameter' => 2,
         ]);
-        $response->assertExactJson($expectedResult);
+        $response->assertExactJson($this->expectedJsonResult);
     }
 }
