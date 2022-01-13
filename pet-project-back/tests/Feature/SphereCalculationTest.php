@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use Tests\BaseShapeFeatureTest;
 
-class CircleCalculationTest extends BaseShapeFeatureTest
+class SphereCalculationTest extends BaseShapeFeatureTest
 {
     /**
      * @return void
@@ -14,19 +14,19 @@ class CircleCalculationTest extends BaseShapeFeatureTest
         parent::setUp();
         $this->endpoint           = '/api/calculate';
         $this->expectedJsonResult = [
-            'radius'    => 1,
-            'diameter'  => 2,
-            'area'      => pi(),
-            'perimeter' => 6.283185307179586,
+            'radius'   => 1,
+            'diameter' => 2,
+            'area'     => 12.566370614359172,
+            'volume'   => 4.1887902047863905,
         ];
     }
 
     /**
-     * Test the request for circle data calculation
+     * Test the request for sphere data calculation
      *
      * @return void
      */
-    public function test__circleCalculationRequest()
+    public function test__sphereCalculationRequest()
     {
         $response = $this->postJson($this->endpoint, [
             'radius' => 1,
@@ -34,16 +34,16 @@ class CircleCalculationTest extends BaseShapeFeatureTest
         $response->assertStatus(422);
 
         $response = $this->postJson($this->endpoint, [
-            'shape'           => 'Circle',
+            'shape'           => 'Sphere',
             'radius'          => $this->expectedJsonResult['radius'],
-            'Circle_diameter' => 3,
+            'Sphere_diameter' => 3,
         ]);
         $response->assertStatus(422);
 
         $response = $this->postJson($this->endpoint, [
-            'shape'           => 'Circle',
+            'shape'           => 'Sphere',
             'radius'          => $this->expectedJsonResult['radius'],
-            'Circle_diameter' => $this->expectedJsonResult['diameter'],
+            'Sphere_diameter' => 2,
         ]);
         $response->assertExactJson($this->expectedJsonResult);
 
@@ -56,26 +56,26 @@ class CircleCalculationTest extends BaseShapeFeatureTest
     private function successCalculationsWithSingleInput()
     {
         $response = $this->postJson($this->endpoint, [
-            'shape'  => 'Circle',
+            'shape'  => 'Sphere',
             'radius' => $this->expectedJsonResult['radius'],
         ]);
         $response->assertExactJson($this->expectedJsonResult);
 
         $response = $this->postJson($this->endpoint, [
-            'shape'           => 'Circle',
-            'Circle_diameter' => $this->expectedJsonResult['diameter'],
+            'shape'           => 'Sphere',
+            'Sphere_diameter' => $this->expectedJsonResult['diameter'],
         ]);
         $response->assertExactJson($this->expectedJsonResult);
 
         $response = $this->postJson($this->endpoint, [
-            'shape'       => 'Circle',
-            'Circle_area' => $this->expectedJsonResult['area'],
+            'shape'        => 'Sphere',
+            'Sphere_area'  => $this->expectedJsonResult['area'],
         ]);
         $response->assertExactJson($this->expectedJsonResult);
 
         $response = $this->postJson($this->endpoint, [
-            'shape'            => 'Circle',
-            'Circle_perimeter' => $this->expectedJsonResult['perimeter'],
+            'shape'          => 'Sphere',
+            'Sphere_volume'  => $this->expectedJsonResult['volume'],
         ]);
         $response->assertExactJson($this->expectedJsonResult);
     }

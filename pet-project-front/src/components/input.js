@@ -5,7 +5,7 @@ export function Input(props) {
     <div className="col form-group">
       <label htmlFor={props.name} className="form-label">{props.label}</label>
       <input
-        id={props.name}
+        id={props.id}
         name={props.name}
         type="text"
         className={"form-control " + props.className}

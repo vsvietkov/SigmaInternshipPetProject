@@ -1,10 +1,10 @@
 <?php namespace App\Components\Shapes;
 
 use App\Components\BaseShape;
+use App\Interfaces\Shape3DInterface;
 use App\Interfaces\ShapeInterface;
-use App\Interfaces\Shape2DInterface;
 
-class Circle extends BaseShape implements ShapeInterface, Shape2DInterface
+class Sphere extends BaseShape implements ShapeInterface, Shape3DInterface
 {
     /**
      * @var float|null
@@ -24,30 +24,30 @@ class Circle extends BaseShape implements ShapeInterface, Shape2DInterface
     /**
      * @var float|null
      */
-    private ?float $perimeter;
+    private ?float $volume;
 
     /**
      * @param float|null $radius
      * @param float|null $diameter
      * @param float|null $area
-     * @param float|null $perimeter
+     * @param float|null $volume
      */
     public function __construct(
         ?float $radius = null,
         ?float $diameter = null,
         ?float $area = null,
-        ?float $perimeter = null,
+        ?float $volume = null,
     ) {
         if (func_num_args() === 0) {
-            $this->radius    = request()->input('radius');
-            $this->diameter  = request()->input('Circle_diameter');
-            $this->area      = request()->input('Circle_area');
-            $this->perimeter = request()->input('Circle_perimeter');
+            $this->radius   = request()->input('radius');
+            $this->diameter = request()->input('Sphere_diameter');
+            $this->area     = request()->input('Sphere_area');
+            $this->volume   = request()->input('Sphere_volume');
         } else {
-            $this->radius    = $radius;
-            $this->diameter  = $diameter;
-            $this->area      = $area;
-            $this->perimeter = $perimeter;
+            $this->radius   = $radius;
+            $this->diameter = $diameter;
+            $this->area     = $area;
+            $this->volume   = $volume;
         }
     }
 
@@ -78,9 +78,9 @@ class Circle extends BaseShape implements ShapeInterface, Shape2DInterface
     /**
      * @return float|null
      */
-    public function getPerimeter(): ?float
+    public function getVolume(): ?float
     {
-        return $this->perimeter;
+        return $this->volume;
     }
 
     /**
@@ -88,10 +88,10 @@ class Circle extends BaseShape implements ShapeInterface, Shape2DInterface
      */
     public function calculateAllAttributes(): void
     {
-        $this->radius    = $this->calculateRadius();
-        $this->diameter  = $this->calculateDiameter();
-        $this->area      = $this->calculateArea();
-        $this->perimeter = $this->calculatePerimeter();
+        $this->radius   = $this->calculateRadius();
+        $this->diameter = $this->calculateDiameter();
+        $this->area     = $this->calculateArea();
+        $this->volume   = $this->calculateVolume();
     }
 
     /**
@@ -104,9 +104,9 @@ class Circle extends BaseShape implements ShapeInterface, Shape2DInterface
         } else if (!is_null($this->diameter)) {
             $this->radius = $this->diameter / 2;
         } else if (!is_null($this->area)) {
-            $this->radius = sqrt($this->area / pi());
-        } else if (!is_null($this->perimeter)) {
-            $this->radius = $this->perimeter / 2 / pi();
+            $this->radius = sqrt(sqrt($this->area / 4 / pi()));
+        } else if (!is_null($this->volume)) {
+            $this->radius = pow($this->volume * 3 / 4 / pi(), 1/3);
         }
 
         return $this->radius;
@@ -133,19 +133,19 @@ class Circle extends BaseShape implements ShapeInterface, Shape2DInterface
             return null;
         }
 
-        return is_null($this->area) ? (pi() * pow($this->calculateRadius(), 2)) : $this->area;
+        return is_null($this->area) ? (4 * pi() * pow($this->calculateRadius(), 2)) : $this->area;
     }
 
     /**
      * @return float|null
      */
-    public function calculatePerimeter(): ?float
+    public function calculateVolume(): ?float
     {
         if (is_null($this->calculateRadius())) {
             return null;
         }
 
-        return is_null($this->perimeter) ? (2 * pi() * $this->calculateRadius()) : $this->perimeter;
+        return is_null($this->volume) ? (4 / 3 * pi() * pow($this->calculateRadius(), 3)) : $this->volume;
     }
 
     /**
@@ -154,10 +154,10 @@ class Circle extends BaseShape implements ShapeInterface, Shape2DInterface
     public function serialize(): array
     {
         return [
-            'radius'    => $this->radius,
-            'diameter'  => $this->diameter,
-            'area'      => $this->area,
-            'perimeter' => $this->perimeter,
+            'radius'   => $this->radius,
+            'diameter' => $this->diameter,
+            'area'     => $this->area,
+            'volume'   => $this->volume,
         ];
     }
 }
