@@ -8,6 +8,9 @@ use App\Rules\Circle\CirclePerimeterRule;
 use App\Rules\Sphere\SphereAreaRule;
 use App\Rules\Sphere\SphereDiameterRule;
 use App\Rules\Sphere\SphereVolumeRule;
+use App\Rules\Square\SquareAreaRule;
+use App\Rules\Square\SquareDiagonalRule;
+use App\Rules\Square\SquarePerimeterRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CalculationRequest extends FormRequest
@@ -36,6 +39,7 @@ class CalculationRequest extends FormRequest
         ];
         $rules += $this->getCircleRules($commonRule);
         $rules += $this->getSphereRules($commonRule);
+        $rules += $this->getSquareRules($commonRule);
 
         return $rules;
     }
@@ -74,6 +78,20 @@ class CalculationRequest extends FormRequest
             'Sphere_diameter' => array_merge($rules, [new SphereDiameterRule()]),
             'Sphere_area'     => array_merge($rules, [new SphereAreaRule()]),
             'Sphere_volume'   => array_merge($rules, [new SphereVolumeRule()]),
+        ];
+    }
+
+    /**
+     * @param  string $commonRule
+     * @return array
+     */
+    private function getSquareRules(string $commonRule): array
+    {
+        $rules = $this->getArrayOfRules($commonRule);
+        return [
+            'Square_diagonal'  => array_merge($rules, [new SquareDiagonalRule()]),
+            'Square_area'      => array_merge($rules, [new SquareAreaRule()]),
+            'Square_perimeter' => array_merge($rules, [new SquarePerimeterRule()]),
         ];
     }
 }
