@@ -8,6 +8,7 @@ A program provides a simple calculator for basic geometry figures like Circle, S
 1. Go to **pet-project-back** folder and run next commands:
 
     - `composer install`
+    - `cp .env.example .env`
     - `php artisan key:generate`
     - `php artisan serve`
 
@@ -15,4 +16,5 @@ A program provides a simple calculator for basic geometry figures like Circle, S
 
     - `npm install`
     - `npm start` - This will open a page in your default browser.
-    
+
+### OOP principles
