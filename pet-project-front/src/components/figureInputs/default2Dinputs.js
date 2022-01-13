@@ -1,17 +1,20 @@
-import React from "react";
+import React, {useContext} from "react";
 import {Input} from "../input";
+import {Context} from "../../App";
 
 export function Inputs2D(props) {
-  let secondInputName = props.figure === 'Circle' ? 'circumference' : 'perimeter';
+  let figure = useContext(Context)
   return (
     <div className="row my-2">
       <Input
+        id="area"
         label='Area:'
-        name='area'
+        name={figure + '_area'}
       />
       <Input
-        label={secondInputName.charAt(0).toUpperCase() + secondInputName.slice(1) + ':'}
-        name='perimeter'
+        id="perimeter"
+        label="Perimeter:"
+        name={figure + '_perimeter'}
       />
     </div>
   );
