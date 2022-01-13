@@ -18,3 +18,29 @@ A program provides a simple calculator for basic geometry figures like Circle, S
     - `npm start` - This will open a page in your default browser.
 
 ### OOP principles
+
+
+### Factory Pattern
+Taking into account that an application can have lots of geometrical figures, it can be problematic to write new
+generator lines for each of them. So, `app/Components/ShapeFactory` class that follows a Factory Pattern was created.
+
+```php
+    /**
+     * @param  string $shapeName
+     * @return BaseShape
+     * @throws NoSuchShapeException
+     */
+    public function make(string $shapeName): BaseShape
+    {
+        $className = $this->namespace . "\\$shapeName";
+
+        if (class_exists($className)) {
+            return new $className();
+        }
+
+        throw new NoSuchShapeException;
+    }
+```
+
+The above function takes as an argument the name of figure class and tries to create it. If there is no such class in
+the defined namespace, a custom exception will be thrown. This allows to freely expand the project and catch errors.
