@@ -27,7 +27,7 @@ class CubeCalculationTest extends BaseShapeFeatureTest
      *
      * @return void
      */
-    public function test__squareCalculationRequest()
+    public function test__cubeCalculationRequest()
     {
         $response = $this->postJson($this->endpoint, [
             'side' => 1,
