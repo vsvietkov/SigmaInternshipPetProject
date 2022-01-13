@@ -14,6 +14,11 @@ class CalculationsOutputter
         $this->shape = $shape;
     }
 
+    /**
+     * Get the calculated results
+     *
+     * @return array
+     */
     public function output()
     {
         return $this->shape->serialize();

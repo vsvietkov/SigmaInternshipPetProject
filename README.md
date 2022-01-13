@@ -1,4 +1,4 @@
-## Sigma Internship Pet-Project
+## <p align="center">Sigma Internship Pet-Project</p>
 
 This is a small project the main aim of which is to demonstrate my knowledge and ability to use *Object-Oriented Design* on practice.
 
@@ -16,7 +16,55 @@ A program provides a simple calculator for basic geometry figures like Circle, S
 
     - `npm install`
     - `npm start` - This will open a page in your default browser.
+## <p align="center">SOLID</p>
+### Single responsibility
+It is very problematic to implement all ways of calculations output for every figure (consider that in future there will
+be more than one option), so the `app/Components/CalculationsOutputter` class was created with a single aim - to output
+the calculations:
+```php
+class CalculationsOutputter
+{
+    /**
+     * @var BaseShape
+     */
+    private BaseShape $shape;
 
+    public function __construct(BaseShape $shape)
+    {
+        $this->shape = $shape;
+    }
+
+    /**
+     * Get the calculated results
+     * 
+     * @return array
+     */
+    public function output()
+    {
+        return $this->shape->serialize();
+    }
+}
+```
+### Open-closed
+Every shape implements `calculateAllAttributes` and `serialize` methods which can be reused in future by many classes
+without the necessity to check the figure type to perform calculations and output. The use of `serialize` method was
+already shown in the "Single responsibility" section.
+### Liskov substitution method
+### Interface segregation
+Geometrical figures can be two-dimensional and three-dimensional and thus have different characteristics. So, it will be
+convenient to use different interfaces for such shapes:
+```php
+interface Shape2DInterface
+{
+    public function calculatePerimeter(): ?float;
+}
+
+interface Shape3DInterface
+{
+    public function calculateVolume(): ?float;
+}
+```
+### Dependency inversion
 ## <p align="center">OOP principles</p>
 ### Encapsulation
 Each figure has its characteristics as `private` and it is required to use getters to access them:
