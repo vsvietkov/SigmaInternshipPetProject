@@ -106,7 +106,7 @@ class Cube extends BaseShape implements ShapeInterface, Shape3DInterface
     public function calculateAllAttributes(): void
     {
         $this->side          = $this->calculateSide();
-        $this->diagonalSmall = $this->calculateDiagonalBig();
+        $this->diagonalSmall = $this->calculateDiagonalSmall();
         $this->diagonalBig   = $this->calculateDiagonalBig();
         $this->area          = $this->calculateArea();
         $this->volume        = $this->calculateVolume();
