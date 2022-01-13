@@ -6,28 +6,33 @@ export function ParallelogramInputs(props) {
     <>
       <div className="row my-2">
         <Input
+          id="sideSmall"
           label="AB,CD:"
-          name="sideSmall"
+          name="Parallelogram_sideSmall"
         />
         <Input
+          id="sideBig"
           label="BC,AD:"
-          name="sideBig"
+          name="Parallelogram_sideBig"
         />
       </div>
       <div className="row my-2">
         <Input
+          id="diagonalBig"
           label="AC:"
-          name="diagonalBig"
+          name="Parallelogram_diagonalBig"
         />
         <Input
+          id="diagonalSmall"
           label="BD:"
-          name="diagonalSmall"
+          name="Parallelogram_diagonalSmall"
         />
       </div>
       <div className="row my-2">
         <Input
+          id="altitude"
           label="Altitude(BH):"
-          name="altitude"
+          name="Parallelogram_altitude"
         />
         <div className="col"></div>
       </div>

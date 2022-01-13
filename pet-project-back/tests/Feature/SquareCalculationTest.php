@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use Tests\BaseShapeFeatureTest;
 
-class CircleCalculationTest extends BaseShapeFeatureTest
+class SquareCalculationTest extends BaseShapeFeatureTest
 {
     /**
      * @return void
@@ -14,36 +14,36 @@ class CircleCalculationTest extends BaseShapeFeatureTest
         parent::setUp();
         $this->endpoint           = '/api/calculate';
         $this->expectedJsonResult = [
-            'radius'    => 1,
-            'diameter'  => 2,
-            'area'      => pi(),
-            'perimeter' => 6.283185307179586,
+            'side'    => 2,
+            'diagonal'  => 2.8284271247461903,
+            'area'      => 4,
+            'perimeter' => 8,
         ];
     }
 
     /**
-     * Test the request for circle data calculation
+     * Test the request for square data calculation
      *
      * @return void
      */
-    public function test__circleCalculationRequest()
+    public function test__squareCalculationRequest()
     {
         $response = $this->postJson($this->endpoint, [
-            'radius' => 1,
+            'side' => 1,
         ]);
         $response->assertStatus(422);
 
         $response = $this->postJson($this->endpoint, [
-            'shape'           => 'Circle',
-            'radius'          => $this->expectedJsonResult['radius'],
-            'Circle_diameter' => 3,
+            'shape'           => 'Square',
+            'side'            => $this->expectedJsonResult['side'],
+            'Square_diagonal' => 3,
         ]);
         $response->assertStatus(422);
 
         $response = $this->postJson($this->endpoint, [
-            'shape'           => 'Circle',
-            'radius'          => $this->expectedJsonResult['radius'],
-            'Circle_diameter' => $this->expectedJsonResult['diameter'],
+            'shape'           => 'Square',
+            'side'            => $this->expectedJsonResult['side'],
+            'Square_diagonal' => $this->expectedJsonResult['diagonal'],
         ]);
         $response->assertExactJson($this->expectedJsonResult);
 
@@ -56,26 +56,26 @@ class CircleCalculationTest extends BaseShapeFeatureTest
     private function successCalculationsWithSingleInput()
     {
         $response = $this->postJson($this->endpoint, [
-            'shape'  => 'Circle',
-            'radius' => $this->expectedJsonResult['radius'],
+            'shape' => 'Square',
+            'side'  => $this->expectedJsonResult['side'],
         ]);
         $response->assertExactJson($this->expectedJsonResult);
 
         $response = $this->postJson($this->endpoint, [
-            'shape'           => 'Circle',
-            'Circle_diameter' => $this->expectedJsonResult['diameter'],
+            'shape'           => 'Square',
+            'Square_diagonal' => $this->expectedJsonResult['diagonal'],
         ]);
         $response->assertExactJson($this->expectedJsonResult);
 
         $response = $this->postJson($this->endpoint, [
-            'shape'       => 'Circle',
-            'Circle_area' => $this->expectedJsonResult['area'],
+            'shape'       => 'Square',
+            'Square_area' => $this->expectedJsonResult['area'],
         ]);
         $response->assertExactJson($this->expectedJsonResult);
 
         $response = $this->postJson($this->endpoint, [
-            'shape'            => 'Circle',
-            'Circle_perimeter' => $this->expectedJsonResult['perimeter'],
+            'shape'            => 'Square',
+            'Square_perimeter' => $this->expectedJsonResult['perimeter'],
         ]);
         $response->assertExactJson($this->expectedJsonResult);
     }
