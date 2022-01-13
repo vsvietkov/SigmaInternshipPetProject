@@ -36,6 +36,7 @@ class CalculationRequest extends FormRequest
         $rules      = [
             'shape'    => 'required|string',
             'radius'   => $commonRule,
+            'side'     => $commonRule,
         ];
         $rules += $this->getCircleRules($commonRule);
         $rules += $this->getSphereRules($commonRule);
