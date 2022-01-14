@@ -4,6 +4,8 @@ This is a small project the main aim of which is to demonstrate my knowledge and
 
 A program provides a simple calculator for basic geometry figures like Circle, Sphere etc. You need to enter at least one shape characteristic to get the calculation results.
 
+![Screenshot from 2022-01-14 11-14-13](https://user-images.githubusercontent.com/95583010/149490178-23b75c1a-be93-467a-9e33-089077d3f2c3.png)
+
 ### Installation
 1. Go to **pet-project-back** folder and run next commands:
 
