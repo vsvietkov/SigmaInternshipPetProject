@@ -17,7 +17,7 @@ A program provides a simple calculator for basic geometry figures like Circle, S
     - `npm install`
     - `npm start` - This will open a page in your default browser.
 ## <p align="center">SOLID</p>
-### Single responsibility
+### Single-responsibility
 It is very problematic to implement all ways of calculations output for every figure (consider that in future there will
 be more than one option), so the `app/Components/CalculationsOutputter` class was created with a single aim - to output
 the calculations:
@@ -49,8 +49,7 @@ class CalculationsOutputter
 Every shape implements `calculateAllAttributes` and `serialize` methods which can be reused in future by many classes
 without the necessity to check the figure type to perform calculations and output. The use of `serialize` method was
 already shown in the "Single responsibility" section.
-### Liskov substitution method
-### Interface segregation
+### Interface Segregation
 Geometrical figures can be two-dimensional and three-dimensional and thus have different characteristics. So, it will be
 convenient to use different interfaces for such shapes:
 ```php
@@ -64,7 +63,24 @@ interface Shape3DInterface
     public function calculateVolume(): ?float;
 }
 ```
-### Dependency inversion
+### Dependency Inversion
+`app/Components/CalculationOutputter` class does not care what shape we passed into it as long as all classes inherited
+from `app/Components/BaseShape` have all necessary methods.
+```php
+class CalculationsOutputter
+{
+    /**
+     * @var BaseShape
+     */
+    private BaseShape $shape;
+
+    public function __construct(BaseShape $shape)
+    {
+        $this->shape = $shape;
+    }
+    ...
+}
+ ```
 ## <p align="center">OOP principles</p>
 ### Encapsulation
 Each figure has its characteristics as `private` and it is required to use getters to access them:
