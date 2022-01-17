@@ -5,12 +5,14 @@ export function SquareInputs(props) {
   return (
     <div className="row my-2">
       <Input
+        id="side"
         label="Side:"
         name="side"
       />
       <Input
+        id="diagonal"
         label="Diagonal:"
-        name="diagonal"
+        name="Square_diagonal"
       />
     </div>
   )

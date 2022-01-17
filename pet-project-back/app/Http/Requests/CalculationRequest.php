@@ -2,9 +2,12 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\CircleAreaRule;
-use App\Rules\CircleDiameterRule;
-use App\Rules\CirclePerimeterRule;
+use App\Rules\Circle\CircleAreaRule;
+use App\Rules\Circle\CircleDiameterRule;
+use App\Rules\Circle\CirclePerimeterRule;
+use App\Rules\Sphere\SphereAreaRule;
+use App\Rules\Sphere\SphereDiameterRule;
+use App\Rules\Sphere\SphereVolumeRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CalculationRequest extends FormRequest
@@ -31,8 +34,8 @@ class CalculationRequest extends FormRequest
             'shape'    => 'required|string',
             'radius'   => $commonRule,
         ];
-        $commonRule .= '|exclude_unless:shape,';
-        $rules      += $this->getCircleRules($commonRule);
+        $rules += $this->getCircleRules($commonRule);
+        $rules += $this->getSphereRules($commonRule);
 
         return $rules;
     }
@@ -52,12 +55,25 @@ class CalculationRequest extends FormRequest
      */
     private function getCircleRules(string $commonRule): array
     {
-        $commonRule .= 'Circle';
-        $rules       = $this->getArrayOfRules($commonRule);
+        $rules = $this->getArrayOfRules($commonRule);
         return [
-            'diameter'  => array_merge($rules, [new CircleDiameterRule()]),
-            'area'      => array_merge($rules, [new CircleAreaRule()]),
-            'perimeter' => array_merge($rules, [new CirclePerimeterRule()]),
+            'Circle_diameter'  => array_merge($rules, [new CircleDiameterRule()]),
+            'Circle_area'      => array_merge($rules, [new CircleAreaRule()]),
+            'Circle_perimeter' => array_merge($rules, [new CirclePerimeterRule()]),
+        ];
+    }
+
+    /**
+     * @param  string $commonRule
+     * @return array
+     */
+    private function getSphereRules(string $commonRule): array
+    {
+        $rules = $this->getArrayOfRules($commonRule);
+        return [
+            'Sphere_diameter' => array_merge($rules, [new SphereDiameterRule()]),
+            'Sphere_area'     => array_merge($rules, [new SphereAreaRule()]),
+            'Sphere_volume'   => array_merge($rules, [new SphereVolumeRule()]),
         ];
     }
 }

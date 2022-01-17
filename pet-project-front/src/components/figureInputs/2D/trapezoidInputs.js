@@ -6,28 +6,33 @@ export function TrapezoidInputs(props) {
     <>
       <div className="row my-2">
         <Input
+          id="sideSideways"
           label="Side a:"
-          name="sideSideways"
+          name="Trapezoid_sideSideways"
         />
         <Input
+          id="sideBig"
           label="Side b:"
-          name="sideBig"
+          name="Trapezoid_sideBig"
         />
       </div>
       <div className="row my-2">
         <Input
+          id="sideSmall"
           label="Side c:"
-          name="sideSmall"
+          name="Trapezoid_sideSmall"
         />
         <Input
+          id="diagonal"
           label="Diagonal:"
-          name="diagonal"
+          name="Trapezoid_diagonal"
         />
       </div>
       <div className="row my-2">
         <Input
+          id="altitude"
           label="Altitude(h):"
-          name="altitude"
+          name="Trapezoid_altitude"
         />
         <div className="col"></div>
       </div>

@@ -83,9 +83,9 @@ export function getFigureInputs(figureName) {
 
 export function getDefaultInputs(currentFigureName) {
   if (FIGURES_2D.includes(currentFigureName)) {
-    return <Inputs2D figure={currentFigureName} />
+    return <Inputs2D />
   } else if (FIGURES_3D.includes(currentFigureName)) {
-    return <Inputs3D figure={currentFigureName} />
+    return <Inputs3D />
   }
 
   return <></>
