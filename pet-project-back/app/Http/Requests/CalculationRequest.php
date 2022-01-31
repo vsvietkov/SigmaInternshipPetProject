@@ -5,10 +5,6 @@ namespace App\Http\Requests;
 use App\Rules\Circle\CircleAreaRule;
 use App\Rules\Circle\CircleDiameterRule;
 use App\Rules\Circle\CirclePerimeterRule;
-use App\Rules\Cube\CubeAreaRule;
-use App\Rules\Cube\CubeDiagonalBigRule;
-use App\Rules\Cube\CubeDiagonalSmallRule;
-use App\Rules\Cube\CubeVolumeRule;
 use App\Rules\Sphere\SphereAreaRule;
 use App\Rules\Sphere\SphereDiameterRule;
 use App\Rules\Sphere\SphereVolumeRule;
@@ -45,7 +41,6 @@ class CalculationRequest extends FormRequest
         $rules += $this->getCircleRules($commonRule);
         $rules += $this->getSphereRules($commonRule);
         $rules += $this->getSquareRules($commonRule);
-        $rules += $this->getCubeRules($commonRule);
 
         return $rules;
     }
@@ -98,21 +93,6 @@ class CalculationRequest extends FormRequest
             'Square_diagonal'  => array_merge($rules, [new SquareDiagonalRule()]),
             'Square_area'      => array_merge($rules, [new SquareAreaRule()]),
             'Square_perimeter' => array_merge($rules, [new SquarePerimeterRule()]),
-        ];
-    }
-
-    /**
-     * @param  string $commonRule
-     * @return array
-     */
-    private function getCubeRules(string $commonRule): array
-    {
-        $rules = $this->getArrayOfRules($commonRule);
-        return [
-            'Cube_diagonalSmall' => array_merge($rules, [new CubeDiagonalSmallRule()]),
-            'Cube_diagonalBig'   => array_merge($rules, [new CubeDiagonalBigRule()]),
-            'Cube_area'          => array_merge($rules, [new CubeAreaRule()]),
-            'Cube_volume'        => array_merge($rules, [new CubeVolumeRule()]),
         ];
     }
 }
