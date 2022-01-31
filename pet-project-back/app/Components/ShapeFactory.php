@@ -1,6 +1,7 @@
 <?php namespace App\Components;
 
 use App\Exceptions\NoSuchShapeException;
+use App\Interfaces\ShapeInterface;
 use function PHPUnit\Framework\throwException;
 
 class ShapeFactory
@@ -20,9 +21,11 @@ class ShapeFactory
     }
 
     /**
+     * @param  string $shapeName
+     * @return BaseShape
      * @throws NoSuchShapeException
      */
-    public function make(string $shapeName)
+    public function make(string $shapeName): BaseShape
     {
         $className = $this->namespace . "\\$shapeName";
 

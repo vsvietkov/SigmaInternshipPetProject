@@ -3,7 +3,7 @@
 abstract class BaseShape
 {
     /**
-     * Get an array of all properties of the shapec
+     * Get an array of all properties of the shape
      *
      * @return array
      */
