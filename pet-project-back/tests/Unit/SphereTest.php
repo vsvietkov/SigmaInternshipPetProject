@@ -39,7 +39,7 @@ class SphereTest extends TestCase
     }
 
     /**
-     * Test the calculation of the area
+     * Test the calculation of the diameter
      *
      * @covers \App\Components\Shapes\Sphere::calculateDiameter
      */
