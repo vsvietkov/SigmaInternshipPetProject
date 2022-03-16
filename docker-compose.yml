@@ -1,0 +1,52 @@
+version: "3.7"
+
+services:
+  front:
+    container_name: sigma-pet-front
+    command: npm start
+    build:
+      args:
+        user: sigma-user
+        uid: "${UID}"
+      context: ./pet-project-front
+      dockerfile: ./Dockerfile
+    ports:
+      - "3000:3000"
+    links:
+      - api
+    restart: unless-stopped
+    volumes:
+      - ./pet-project-front/:/var/www/
+      - /var/www/node_modules/
+    networks:
+      - sigma-pet-project
+  api:
+    container_name: sigma-pet-api
+    command: php artisan serve --host 192.168.0.2
+    build:
+      args:
+        user: sigma-user
+        uid: "${UID}"
+      context: ./pet-project-back
+      dockerfile: ./Dockerfile
+    restart: unless-stopped
+    expose:
+      - "8000"
+    volumes:
+      - ./pet-project-back/:/var/www/
+    networks:
+      sigma-pet-project:
+        ipv4_address: 192.168.0.2
+
+networks:
+  sigma-pet-project:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "true"
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.0.0/24
+          gateway: 192.168.0.1
+        - subnet: 2001:3984:3989::/64
+          gateway: 2001:3984:3989::1
