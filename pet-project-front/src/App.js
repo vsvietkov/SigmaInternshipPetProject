@@ -33,7 +33,7 @@ async function calculate(event) {
   event.preventDefault()
   clearErrorSpans()
 
-  let response = await fetch('http://192.168.0.2:8000/api/calculate', {
+  let response = await fetch('http://172.168.0.2:8000/api/calculate', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
