@@ -12,19 +12,19 @@ docker-build-api:
 docker-build: docker-build-front docker-build-api
 # Install npm dependencies
 npm-install:
-	@docker exec -it $(APP_FRONT) sh -c "npm install"
+	@docker run --rm -v ${PWD}/pet-project-front/:/var/www/ -w /var/www/ $(APP_FRONT) npm install
 # Update npm dependencies
 npm-update:
-	@docker exec -it $(APP_FRONT) sh -c "npm update"
+	@docker run --rm -v ${PWD}/pet-project-front/:/var/www/ -w /var/www/ $(APP_FRONT) npm update
 # Generate a unique Laravel application key
 generate-key:
 	@docker exec -it $(APP) sh -c "php artisan key:generate"
 # Install composer dependencies
 composer-install:
-	@docker exec -it $(APP_API) sh -c "composer install"
+	@docker run --rm -v ${PWD}/pet-project-back/:/var/www/ -w /var/www/ $(APP_API) composer install
 # Update composer dependencies
 composer-update:
-	@docker exec -it $(APP_API) sh -c "composer update"
+	@docker run --rm -v ${PWD}/pet-project-back/:/var/www/ -w /var/www/ $(APP_API) composer update
 # Start a project
 start:
 	@$(DC) up -d
