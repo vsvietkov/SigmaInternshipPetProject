@@ -7,17 +7,14 @@ A program provides a simple calculator for basic geometry figures like Circle, S
 ![Screenshot from 2022-01-14 11-14-13](https://user-images.githubusercontent.com/95583010/149490178-23b75c1a-be93-467a-9e33-089077d3f2c3.png)
 
 ### Installation
-1. Go to **pet-project-back** folder and run next commands:
 
-    - `composer install`
-    - `cp .env.example .env`
-    - `php artisan key:generate`
-    - `php artisan serve`
+- Ensure that you are in the root directory of a project
+- Run `make docker-build`
+- Run `make npm-install`
+- Run `make composer-install`
+- Run `make start`
+- Now you can check out http://localhost:3000
 
-2. In a new terminal window go to **pet-project-front** folder and run next commands:
-
-    - `npm install`
-    - `npm start` - This will open a page in your default browser.
 ## <p align="center">SOLID</p>
 ### Single-responsibility
 It is very problematic to implement all ways of calculations output for every figure (consider that in future there will
